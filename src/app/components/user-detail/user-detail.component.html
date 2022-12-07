@@ -1,5 +1,8 @@
 <div class="detail-container">
-  <img [src]="defaultPicture" alt="default-picture" />
-  <p>{{ userFound?.firstName }}</p>
-  <p>{{ userFound?.lastName }}</p>
+  <div class="picture-section">
+    <img [src]="defaultPicture" alt="default-picture" />
+    <h1>{{ userFound?.firstName }}</h1>
+    <h1>{{ userFound?.lastName }}</h1>
+  </div>
+  <div class="user-details"></div>
 </div>
