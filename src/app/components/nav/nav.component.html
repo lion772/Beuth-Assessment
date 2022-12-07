@@ -32,4 +32,9 @@
   >
     Beuth App
   </h3>
+  <form #submitForm="ngForm" (ngSubmit)="onSubmitHandler(submitForm)">
+    <input type="text" placeholder="Login" />
+    <input type="password" placeholder="Login" />
+    <button class="submit-button" type="submit">login</button>
+  </form>
 </nav>

@@ -6,8 +6,16 @@
   margin: 0;
 }
 
+html {
+  height: 100%;
+  overflow: auto;
+}
+
+body {
+  min-height: 100%;
+}
+
 main {
-  width: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
