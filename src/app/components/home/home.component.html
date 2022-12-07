@@ -1,0 +1,13 @@
+<div class="beuth-container">
+  <app-logo class="beuth-logo" [title]="title"></app-logo>
+
+  <h2>Those are the people who belong to the same team:</h2>
+
+  <div class="list-names" *ngFor="let user of users">
+    <p>
+      {{ user.firstName }} {{ user.lastName }}, whose current level is
+      {{ user.userLevel }}
+    </p>
+    <button (click)="onClickHandler(user)">Mehr erfahren</button>
+  </div>
+</div>

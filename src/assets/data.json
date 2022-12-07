@@ -1,0 +1,26 @@
+[
+  {
+    "firstName": "Max",
+    "lastName": "Mustermann",
+    "username": "Maxl",
+    "userLevel": 10
+  },
+  {
+    "firstName": "Susi",
+    "lastName": "Sorglos",
+    "username": "suesie",
+    "userLevel": 1
+  },
+  {
+    "firstName": "Anatol",
+    "lastName": "Nunnemann",
+    "username": "anatol",
+    "userLevel": 1
+  },
+  {
+    "firstName": "William",
+    "lastName": "Steinke de Mello",
+    "username": "Will",
+    "userLevel": 1
+  }
+]
