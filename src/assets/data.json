@@ -3,24 +3,28 @@
     "firstName": "Max",
     "lastName": "Mustermann",
     "username": "Maxl",
-    "userLevel": 10
+    "userLevel": 10,
+    "picturePath": "../../../assets/no-profile-img.jpg"
   },
   {
     "firstName": "Susi",
     "lastName": "Sorglos",
     "username": "suesie",
-    "userLevel": 1
+    "userLevel": 1,
+    "picturePath": "../../../assets/no-profile-img.jpg"
   },
   {
     "firstName": "Anatol",
     "lastName": "Nunnemann",
     "username": "anatol",
-    "userLevel": 1
+    "userLevel": 1,
+    "picturePath": "../../../assets/no-profile-img.jpg"
   },
   {
     "firstName": "William",
     "lastName": "Steinke de Mello",
     "username": "Will",
-    "userLevel": 5
+    "userLevel": 5,
+    "picturePath": "../../../assets/eu.jpg"
   }
 ]
