@@ -1,13 +1,13 @@
 <div>
   <app-logo class="beuth-logo" [title]="title"></app-logo>
 
-  <h2>Those are the people who belong to the same team:</h2>
+  <h1>Those are the people who belong to the same team:</h1>
 
   <div class="list-names card" *ngFor="let user of users">
-    <p>
+    <h2>
       {{ user.firstName }} {{ user.lastName }}, whose current level is
       {{ user.userLevel }}
-    </p>
+    </h2>
     <button (click)="onClickHandler(user)">Mehr</button>
   </div>
 </div>

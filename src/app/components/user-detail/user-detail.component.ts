@@ -9,6 +9,7 @@ import { UserService } from '../../_services/user-service.service';
   styleUrls: ['./user-detail.component.css'],
 })
 export class UserDetailComponent implements OnInit {
+  defaultPicture = '../../../assets/no-profile-img.jpg';
   users: UserInfo[] = [];
   userFound?: UserInfo | null;
   constructor(private route: ActivatedRoute) {}
