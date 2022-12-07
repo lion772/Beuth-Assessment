@@ -1,3 +1,20 @@
+.header-component {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.beuth-log {
+  width: 50%;
+  text-align: left;
+}
+.beuth-log h1 {
+  font-size: 350%;
+  text-rendering: auto;
+}
+
 .submit-button {
   align-items: center;
   appearance: button;
@@ -33,20 +50,27 @@
   background-color: #1c84ff;
 }
 
-button {
-  width: 100px;
-}
-
-.mat-card-title {
-  width: 40%;
-  padding: 1rem 6rem;
-  margin: auto;
+form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-mat-form-field,
-input {
-  width: 100%;
+button {
+  width: 120px;
+  padding: 4px;
+}
+.mat-card-title {
+  width: 40%;
+}
+
+.divisor {
+  flex: 1 1 auto;
+}
+
+.mat-card-title mat-form-field,
+.mat-card-title input {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
 }

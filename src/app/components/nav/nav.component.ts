@@ -13,6 +13,7 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmitHandler(form: NgForm) {
-    console.log(form);
+    const { login, password } = form.value;
+    console.log(login, password);
   }
 }

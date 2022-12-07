@@ -23,52 +23,60 @@
 
  -->
 
-<nav class="navbar navbar-dark bg-primary">
-  <!-- Navbar content -->
-  <h3
-    class="ms-4 my-auto text-white"
-    [routerLink]="['/']"
-    [style]="{ cursor: 'pointer' }"
-  >
-    Beuth App
-  </h3>
+<header>
+  <nav class="navbar navbar-dark bg-primary header-component m-0 p-0">
+    <!-- Navbar content -->
+    <div
+      class="ms-4 my-auto text-white beuth-log"
+      [routerLink]="['/']"
+      [style]="{ cursor: 'pointer' }"
+    >
+      <h1>Beuth App</h1>
+    </div>
 
-  <form
-    class="post-form"
-    #postForm="ngForm"
-    (submit)="onSubmitHandler(postForm)"
-  >
-    <mat-form-field>
-      <input
-        class="p-1"
-        matInput
-        name="title"
-        placeholder="title"
-        ngModel
-        #title="ngModel"
-        required
-        minlength="3"
-      />
-      <mat-error *ngIf="title.invalid"
-        >Plese enter a valid title (at least 3 characters)</mat-error
+    <div class="divisor"></div>
+
+    <div class="mat-card-title">
+      <form
+        class="post-form"
+        #postForm="ngForm"
+        (submit)="onSubmitHandler(postForm)"
       >
-    </mat-form-field>
-    <mat-form-field>
-      <input
-        class="p-1"
-        type="password"
-        matInput
-        name="password"
-        placeholder="password"
-        ngModel
-        #password="ngModel"
-        required
-        minlength="3"
-      />
-      <mat-error *ngIf="password.invalid"
-        >Plese enter a valid content (at least 3 characters)</mat-error
-      >
-    </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Save Post</button>
-  </form>
-</nav>
+        <mat-form-field>
+          <input
+            class="p-1"
+            matInput
+            name="login"
+            placeholder="login"
+            ngModel
+            #title="ngModel"
+            required
+            minlength="3"
+          />
+          <mat-error *ngIf="title.invalid"
+            >Plese enter a valid title (at least 3 characters)</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            class="p-1"
+            type="password"
+            matInput
+            name="password"
+            placeholder="password"
+            ngModel
+            #password="ngModel"
+            required
+            minlength="3"
+          />
+          <mat-error *ngIf="password.invalid"
+            >Plese enter a valid content (at least 3 characters)</mat-error
+          >
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">
+          Save Post
+        </button>
+      </form>
+    </div>
+  </nav>
+</header>
