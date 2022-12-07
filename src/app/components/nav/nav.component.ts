@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { CrendetialsService } from 'src/app/_services/crendetials.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,12 +9,11 @@ import { NgForm } from '@angular/forms';
 })
 export class NavComponent implements OnInit {
   active = 1;
-  constructor() {}
+  constructor(private credentialsService: CrendetialsService) {}
 
   ngOnInit(): void {}
 
   onSubmitHandler(form: NgForm) {
-    const { login, password } = form.value;
-    console.log(login, password);
+    this.credentialsService.signup(form.value);
   }
 }
