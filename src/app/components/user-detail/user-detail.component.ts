@@ -10,12 +10,13 @@ import { UserService } from '../../_services/user-service.service';
 })
 export class UserDetailComponent implements OnInit {
   defaultPicture = '../../../assets/no-profile-img.jpg';
-  users: UserInfo[] = [];
+  actualLevel: number = 1;
   userFound?: UserInfo | null;
   constructor(private route: ActivatedRoute) {}
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.userFound = params as UserInfo;
+      this.actualLevel = params['userLevel']
     });
   }
 }

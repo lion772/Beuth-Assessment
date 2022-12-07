@@ -4,5 +4,28 @@
     <h1>{{ userFound?.firstName }}</h1>
     <h1>{{ userFound?.lastName }}</h1>
   </div>
-  <div class="user-details"></div>
+  <div class="user-details">
+    <h1>Everything we know about {{ userFound?.firstName }}:</h1>
+    <ul>
+      <li>
+        <p>First Name: {{ userFound?.firstName }}</p>
+      </li>
+      <li>
+        <p>Last Name: {{ userFound?.lastName }}</p>
+      </li>
+      <li>
+        <p>Username: {{ userFound?.username }}</p>
+      </li>
+      <li>
+        <p>
+          Actual Programming level: {{ userFound?.userLevel }} 👉
+          {{
+            actualLevel > 5
+              ? "You rock at programming!"
+              : "You still have to learn"
+          }}
+        </p>
+      </li>
+    </ul>
+  </div>
 </div>
