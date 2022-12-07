@@ -32,9 +32,43 @@
   >
     Beuth App
   </h3>
-  <form #submitForm="ngForm" (ngSubmit)="onSubmitHandler(submitForm)">
-    <input type="text" placeholder="Login" />
-    <input type="password" placeholder="Login" />
-    <button class="submit-button" type="submit">login</button>
+
+  <form
+    class="post-form"
+    #postForm="ngForm"
+    (submit)="onSubmitHandler(postForm)"
+  >
+    <mat-form-field>
+      <input
+        class="p-1"
+        matInput
+        name="title"
+        placeholder="title"
+        ngModel
+        #title="ngModel"
+        required
+        minlength="3"
+      />
+      <mat-error *ngIf="title.invalid"
+        >Plese enter a valid title (at least 3 characters)</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        class="p-1"
+        type="password"
+        matInput
+        name="password"
+        placeholder="password"
+        ngModel
+        #password="ngModel"
+        required
+        minlength="3"
+      />
+      <mat-error *ngIf="password.invalid"
+        >Plese enter a valid content (at least 3 characters)</mat-error
+      >
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Save Post</button>
   </form>
 </nav>
