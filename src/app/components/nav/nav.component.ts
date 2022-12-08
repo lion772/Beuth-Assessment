@@ -25,10 +25,6 @@ export class NavComponent implements OnInit {
     });
   }
 
-  switchToLogin() {
-    this.signIn = true;
-  }
-
   onSubmitHandler(form: NgForm) {
     if (!this.signIn) {
       console.log('signup');
@@ -37,7 +33,7 @@ export class NavComponent implements OnInit {
     } else {
       console.log('signin');
       const credentials = { ...form.value, returnSecureToken: true };
-      //this.credentialsService.signin(credentials);
+      this.credentialsService.signin(credentials);
     }
   }
 

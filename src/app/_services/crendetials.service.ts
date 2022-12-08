@@ -1,8 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, map } from 'rxjs';
-import { UserInfo } from '../models/UserInfo.dto';
-import { ENDPOINT } from '../secrets';
+import { ENDPOINT_SIGNUP, ENDPOINT_SIGNIN } from '../secrets';
 import { User } from '../models/User.dto';
 
 @Injectable({
@@ -14,7 +13,7 @@ export class CrendetialsService {
   userCredentials$ = this.userCredentialsSource.asObservable();
   private isUserLoggedIn = new BehaviorSubject<boolean>(false);
   isUserLoggedIn$ = this.isUserLoggedIn.asObservable();
-  
+
   constructor(private http: HttpClient) {}
 
   signup(credentials: {
@@ -23,7 +22,7 @@ export class CrendetialsService {
     returnSecureToken: boolean;
   }) {
     console.log(credentials);
-    this.http.post(ENDPOINT, credentials).subscribe({
+    this.http.post(ENDPOINT_SIGNUP, credentials).subscribe({
       next: (res: any) => {
         const { idToken, email } = res;
         this.userCredentials = { idToken, email };
@@ -32,6 +31,23 @@ export class CrendetialsService {
         this.userCredentialsSource.next(this.userCredentials);
       },
       error: (err) => console.log(err.message),
+    });
+  }
+
+  signin(credentials: {
+    email: string;
+    password: string;
+    returnSecureToken: boolean;
+  }) {
+    this.http.post(ENDPOINT_SIGNIN, credentials).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        const { idToken, email } = res;
+        this.userCredentials = { idToken, email };
+        localStorage.setItem('token', idToken);
+        this.checkUserLoggedIn();
+        this.userCredentialsSource.next(this.userCredentials);
+      },
     });
   }
 
