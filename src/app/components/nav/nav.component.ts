@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/User.dto';
 import { CrendetialsService } from 'src/app/_services/crendetials.service';
 
@@ -12,7 +13,10 @@ export class NavComponent implements OnInit {
   active = 1;
   userLoggedIn = false;
   signIn = false;
-  constructor(private credentialsService: CrendetialsService) {}
+  constructor(
+    private credentialsService: CrendetialsService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.credentialsService.userCredentials$.subscribe({
@@ -35,6 +39,7 @@ export class NavComponent implements OnInit {
       const credentials = { ...form.value, returnSecureToken: true };
       this.credentialsService.signin(credentials);
     }
+    this.router.navigate(['/']);
   }
 
   onLogoutHandler() {

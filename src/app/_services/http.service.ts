@@ -35,4 +35,14 @@ export class HttpService {
         error: (err) => console.log(err.message),
       });
   }
+  postUserToFirebase(user: UserInfo) {
+    this.http.post(FIREBASE_DOMAIN, user).subscribe({
+      next: (res) => {
+        console.log('New user added!', res);
+        /* this.usersList = userData;
+          this.usersInfoSource.next([...this.usersList]); */
+      },
+      error: (err) => console.log(err.message),
+    });
+  }
 }

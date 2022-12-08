@@ -17,15 +17,16 @@
         <mat-form-field>
           <input
             matInput
+            type="email"
             name="email"
             placeholder="email"
             ngModel
-            #title="ngModel"
+            #email="ngModel"
             required
             minlength="6"
           />
-          <mat-error *ngIf="title.invalid"
-            >Plese enter a valid title.</mat-error
+          <mat-error *ngIf="email.invalid"
+            >Plese enter a valid email.</mat-error
           >
         </mat-form-field>
         <mat-form-field>
@@ -55,6 +56,14 @@
             >{{
               signIn ? "Don't you have an account?" : "Do you want to sign in?"
             }}</a
+          >
+        </p>
+        <p>
+          <a
+            [routerLink]="['/user-create']"
+            role="button"
+            class="d-block text-white text-decoration-none h6 log-component"
+            >Create user</a
           >
         </p>
       </form>

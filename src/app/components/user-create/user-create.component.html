@@ -1,1 +1,93 @@
-<p>user-create works!</p>
+<div class="bg-default card create-component" *ngIf="!isUserLoggedIn">
+  <p>Create user</p>
+
+  <form #createForm="ngForm" (submit)="onCreateHandler(createForm)">
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field>
+          <input
+            matInput
+            class="input-credential"
+            type="text"
+            name="firstName"
+            ngModel
+            #firstName="ngModel"
+            minlength="3"
+            placeholder="first name"
+            required
+          />
+          <mat-error *ngIf="firstName.invalid"
+            >Plese enter a valid first name</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            class="input-credential"
+            type="text"
+            name="lastName"
+            ngModel
+            #lastName="ngModel"
+            minlength="3"
+            placeholder="last name"
+            required
+          />
+          <mat-error *ngIf="lastName.invalid"
+            >Plese enter a valid last name</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            name="username"
+            ngModel
+            #username="ngModel"
+            minlength="3"
+            placeholder="username"
+            required
+          />
+          <mat-error *ngIf="username.invalid"
+            >Plese enter a valid username</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field>
+          <input
+            matInput
+            class="input-credential"
+            type="text"
+            name="userLevel"
+            ngModel
+            #userLevel="ngModel"
+            minlength="3"
+            placeholder="user level"
+            required
+          />
+          <mat-error *ngIf="userLevel.invalid"
+            >Plese enter a valid user level</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            class="input-credential"
+            type="text"
+            name="picturePath"
+            ngModel
+            #picturePath="ngModel"
+            minlength="3"
+            placeholder="picture path"
+            required
+          />
+          <mat-error *ngIf="picturePath.invalid"
+            >Plese enter a valid picture path</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </div>
+
+    <button mat-raised-button color="accent" type="submit">Create</button>
+  </form>
+</div>
