@@ -40,20 +40,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     }); */
 
     //Second way: Getting users from Firebase database:
-    this.credentialsService.isUserLoggedIn$.subscribe({
-      next: (isLoggedIn) => {
-        if (isLoggedIn) {
-          this.httpService.getUsersFromFirebase();
-          this.subscription = this.httpService.usersInfo$.subscribe(
-            (usersData) => {
-              if (usersData && usersData?.length > 0) {
-                this.users = usersData;
-              }
-            }
-          );
+    if (this.users?.length === 0) {
+      this.httpService.getUsersFromFirebase();
+      this.subscription = this.httpService.usersInfo$.subscribe((usersData) => {
+        if (usersData && usersData?.length > 0) {
+          console.log(usersData);
+          this.users = usersData;
         }
-      },
-    });
+      });
+    }
   }
 
   onClickHandler = (user: UserInfo) => {
