@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-dark bg-primary m-0 p-0" *ngIf="!userLoggedIn">
+  <nav class="navbar navbar-dark bg-primary p-1">
     <div
       class="ms-4 my-auto text-white"
       [routerLink]="['/']"
@@ -9,7 +9,11 @@
     </div>
 
     <div class="mx-5">
-      <form #postForm="ngForm" (submit)="onSubmitHandler(postForm)">
+      <form
+        #postForm="ngForm"
+        (submit)="onSubmitHandler(postForm)"
+        *ngIf="!userLoggedIn"
+      >
         <mat-form-field>
           <input
             matInput
@@ -40,25 +44,20 @@
             >Plese enter a valid content.</mat-error
           >
         </mat-form-field>
-        <button mat-raised-button color="primary" type="submit">
-          {{ userLoggedIn ? "logout" : "login" }}
+        <button mat-raised-button color="primary" class="mx-2" type="submit">
+          login
         </button>
       </form>
-    </div>
-  </nav>
 
-  <nav
-    class="navbar fixed-top navbar-dark bg-primary header-component m-0 p-2 d-flex justify-content-between align-items-center"
-    *ngIf="userLoggedIn"
-  >
-    <h3 class="my-auto mx-4 text-white">Beuth Verlag</h3>
-    <button
-      mat-raised-button
-      color="accent"
-      class="mx-4"
-      (click)="onLogoutHandler()"
-    >
-      logout
-    </button>
+      <button
+        *ngIf="userLoggedIn"
+        mat-raised-button
+        color="accent"
+        class="mx-4"
+        (click)="onLogoutHandler()"
+      >
+        logout
+      </button>
+    </div>
   </nav>
 </header>
