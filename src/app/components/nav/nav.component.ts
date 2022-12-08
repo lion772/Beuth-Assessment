@@ -11,6 +11,7 @@ import { CrendetialsService } from 'src/app/_services/crendetials.service';
 export class NavComponent implements OnInit {
   active = 1;
   userLoggedIn = false;
+  signIn = false;
   constructor(private credentialsService: CrendetialsService) {}
 
   ngOnInit(): void {
@@ -24,9 +25,20 @@ export class NavComponent implements OnInit {
     });
   }
 
+  switchToLogin() {
+    this.signIn = true;
+  }
+
   onSubmitHandler(form: NgForm) {
-    const credentials = { ...form.value, returnSecureToken: true };
-    this.credentialsService.signup(credentials);
+    if (!this.signIn) {
+      console.log('signup');
+      const credentials = { ...form.value, returnSecureToken: true };
+      this.credentialsService.signup(credentials);
+    } else {
+      console.log('signin');
+      const credentials = { ...form.value, returnSecureToken: true };
+      //this.credentialsService.signin(credentials);
+    }
   }
 
   onLogoutHandler() {

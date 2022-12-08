@@ -45,8 +45,18 @@
           >
         </mat-form-field>
         <button mat-raised-button color="primary" class="mx-2" type="submit">
-          login
+          {{ signIn ? "sign in" : "sign up" }}
         </button>
+        <p>
+          <a
+            class="d-block text-white text-decoration-none h6"
+            role="button"
+            (click)="signIn = !signIn"
+            >{{
+              signIn ? "Don't you have an account?" : "Do you want to sign in?"
+            }}</a
+          >
+        </p>
       </form>
 
       <button
