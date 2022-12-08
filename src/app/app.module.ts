@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { UserCreateComponent } from './components/user-create/user-create.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MatCardModule } from '@angular/material/card';
     UserDetailComponent,
     LogoComponent,
     NavComponent,
+    UserCreateComponent,
   ],
   imports: [
     BrowserModule,

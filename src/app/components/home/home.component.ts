@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
-    this.title = 'my new humble website';
+    this.title = 'Welcome new fellows';
     this.credentialsService.checkUserLoggedIn();
     this.credentialsService.isUserLoggedIn$.subscribe({
       next: (isLogged) => {

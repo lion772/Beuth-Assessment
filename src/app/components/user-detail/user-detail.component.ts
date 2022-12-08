@@ -21,7 +21,6 @@ export class UserDetailComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      console.log('PARAMS: ', params);
       this.defaultPicture = params['picturePath'];
       this.userFound = params as UserInfo;
       this.actualLevel = params['userLevel'];
