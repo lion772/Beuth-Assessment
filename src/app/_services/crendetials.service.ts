@@ -9,6 +9,7 @@ import { User } from '../models/User.dto';
 })
 export class CrendetialsService {
   private userCredentials!: User;
+  isLoggedin = false;
   private userCredentialsSource = new BehaviorSubject<User | null>(null);
   userCredentials$ = this.userCredentialsSource.asObservable();
   private isUserLoggedIn = new BehaviorSubject<boolean>(false);
@@ -52,8 +53,9 @@ export class CrendetialsService {
   }
 
   checkUserLoggedIn() {
-    const isLoggedIn = localStorage.getItem('token') ? true : false;
-    this.isUserLoggedIn.next(isLoggedIn);
+    const isLoggedin = localStorage.getItem('token') ? true : false;
+    this.isLoggedin = isLoggedin;
+    this.isUserLoggedIn.next(isLoggedin);
   }
 
   logout() {
