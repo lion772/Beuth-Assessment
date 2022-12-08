@@ -12,6 +12,8 @@ export class CrendetialsService {
   userCredentials!: User;
   private userCredentialsSource = new BehaviorSubject<User | null>(null);
   userCredentials$ = this.userCredentialsSource.asObservable();
+  private isUserLoggedIn = new BehaviorSubject<boolean>(false);
+  isUserLoggedIn$ = this.isUserLoggedIn.asObservable();
   constructor(private http: HttpClient) {}
 
   signup(credentials: {
@@ -27,19 +29,20 @@ export class CrendetialsService {
         this.userCredentials = { idToken, email };
         console.log('CREDENTIALS: ', idToken, email);
         localStorage.setItem('token', idToken);
+        this.checkUserLoggedIn();
         this.userCredentialsSource.next(this.userCredentials);
       },
       error: (err) => console.log(err.message),
     });
   }
 
-  checkUserLoggedIn(): boolean {
-    return localStorage.getItem('token') ? true : false;
+  checkUserLoggedIn() {
+    const isLoggedIn = localStorage.getItem('token') ? true : false;
+    this.isUserLoggedIn.next(isLoggedIn);
   }
 
-  logout(): boolean {
+  logout() {
     localStorage.clear();
-    return false;
+    this.checkUserLoggedIn();
   }
 }
-

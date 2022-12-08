@@ -31,6 +31,7 @@ export class NavComponent implements OnInit {
   }
 
   onLogoutHandler() {
-    this.userLoggedIn = this.credentialsService.logout();
+     this.credentialsService.logout();
+     this.credentialsService.isUserLoggedIn$.subscribe(isLogged => this.userLoggedIn = isLogged)
   }
 }

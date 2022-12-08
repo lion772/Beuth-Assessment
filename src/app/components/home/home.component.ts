@@ -25,7 +25,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.title = 'my new humble website';
-    this.userLoggedIn = this.credentialsService.checkUserLoggedIn();
+    this.credentialsService.checkUserLoggedIn();
+    this.credentialsService.isUserLoggedIn$.subscribe({
+      next: (isLogged) => {
+        this.userLoggedIn = isLogged;
+      },
+    });
     console.log(this.userLoggedIn);
 
     //First way: Getting dummy data from user.service.ts:

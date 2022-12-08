@@ -1,9 +1,9 @@
 <div class="home-container">
   <app-logo class="beuth-logo" [title]="title"></app-logo>
 
-  <h1 class="my-5">Those are the people who belong to the same team:</h1>
-
   <div *ngIf="userLoggedIn">
+    <h1 class="my-5">Those are the people who belong to the same team:</h1>
+
     <div class="list-names card" *ngFor="let user of users">
       <h2>
         {{ user.firstName }} {{ user.lastName }}, whose current level is
