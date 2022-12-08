@@ -1,25 +1,15 @@
 <header>
-  <nav
-    class="navbar navbar-dark bg-primary header-component m-0 p-0"
-    *ngIf="!userLoggedIn"
-  >
-    <!-- Navbar content -->
+  <nav class="navbar navbar-dark bg-primary m-0 p-0" *ngIf="!userLoggedIn">
     <div
-      class="ms-4 my-auto text-white beuth-log"
+      class="ms-4 my-auto text-white"
       [routerLink]="['/']"
       [style]="{ cursor: 'pointer' }"
     >
       <h1>Beuth App</h1>
     </div>
 
-    <div class="divisor"></div>
-
-    <div class="mat-card-title">
-      <form
-        class="post-form"
-        #postForm="ngForm"
-        (submit)="onSubmitHandler(postForm)"
-      >
+    <div class="mx-5">
+      <form #postForm="ngForm" (submit)="onSubmitHandler(postForm)">
         <mat-form-field>
           <input
             matInput
@@ -28,10 +18,10 @@
             ngModel
             #title="ngModel"
             required
-            minlength="3"
+            minlength="6"
           />
           <mat-error *ngIf="title.invalid"
-            >Plese enter a valid title (at least 3 characters)</mat-error
+            >Plese enter a valid title.</mat-error
           >
         </mat-form-field>
         <mat-form-field>
@@ -44,14 +34,14 @@
             ngModel
             #password="ngModel"
             required
-            minlength="3"
+            minlength="6"
           />
           <mat-error *ngIf="password.invalid"
-            >Plese enter a valid content (at least 3 characters)</mat-error
+            >Plese enter a valid content.</mat-error
           >
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit">
-          Save Post
+          {{ userLoggedIn ? "logout" : "login" }}
         </button>
       </form>
     </div>

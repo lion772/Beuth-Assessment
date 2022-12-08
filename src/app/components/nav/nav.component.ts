@@ -18,7 +18,6 @@ export class NavComponent implements OnInit {
       next: (_) => {
         if (localStorage.getItem('token')) {
           this.userLoggedIn = true;
-          console.log('USER IS LOGGED IN! UHUU!', this.userLoggedIn);
         }
       },
       error: (err) => console.log(err),
@@ -31,7 +30,9 @@ export class NavComponent implements OnInit {
   }
 
   onLogoutHandler() {
-     this.credentialsService.logout();
-     this.credentialsService.isUserLoggedIn$.subscribe(isLogged => this.userLoggedIn = isLogged)
+    this.credentialsService.logout();
+    this.credentialsService.isUserLoggedIn$.subscribe(
+      (isLogged) => (this.userLoggedIn = isLogged)
+    );
   }
 }

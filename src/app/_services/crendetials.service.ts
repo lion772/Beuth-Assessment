@@ -9,11 +9,12 @@ import { User } from '../models/User.dto';
   providedIn: 'root',
 })
 export class CrendetialsService {
-  userCredentials!: User;
+  private userCredentials!: User;
   private userCredentialsSource = new BehaviorSubject<User | null>(null);
   userCredentials$ = this.userCredentialsSource.asObservable();
   private isUserLoggedIn = new BehaviorSubject<boolean>(false);
   isUserLoggedIn$ = this.isUserLoggedIn.asObservable();
+  
   constructor(private http: HttpClient) {}
 
   signup(credentials: {
@@ -24,10 +25,8 @@ export class CrendetialsService {
     console.log(credentials);
     this.http.post(ENDPOINT, credentials).subscribe({
       next: (res: any) => {
-        console.log(res);
         const { idToken, email } = res;
         this.userCredentials = { idToken, email };
-        console.log('CREDENTIALS: ', idToken, email);
         localStorage.setItem('token', idToken);
         this.checkUserLoggedIn();
         this.userCredentialsSource.next(this.userCredentials);
