@@ -1,11 +1,3 @@
-.home-container {
-  overflow: auto;
-}
-
-.home-container h1 {
-  font-size: 130%;
-}
-
 .list-names {
   display: flex;
   flex-direction: column;

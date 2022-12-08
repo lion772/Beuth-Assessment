@@ -35,14 +35,6 @@
 
 button {
   width: 120px;
-  padding: 4px;
-}
-.mat-card-title {
-  width: 40%;
-}
-
-.divisor {
-  flex: 1 1 auto;
 }
 
 .mat-card-title mat-form-field,
@@ -50,4 +42,7 @@ button {
   width: 80%;
   display: flex;
   flex-direction: column;
+}
+.log-component {
+  font-size: 16px;
 }
