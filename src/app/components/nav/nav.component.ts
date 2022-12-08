@@ -14,6 +14,7 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmitHandler(form: NgForm) {
-    this.credentialsService.signup(form.value);
+    const credentials = { ...form.value, returnSecureToken: true };
+    this.credentialsService.signup(credentials);
   }
 }
