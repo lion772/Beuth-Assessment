@@ -1,30 +1,8 @@
-<!-- <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-  <li [ngbNavItem]="1">
-    <a ngbNavLink>One</a>
-    <ng-template ngbNavContent>
-      <p>test1</p>
-    </ng-template>
-  </li>
-  <li [ngbNavItem]="2">
-    <a ngbNavLink>Two</a>
-    <ng-template ngbNavContent>
-      <p>test2</p>
-    </ng-template>
-  </li>
-  <li [ngbNavItem]="3">
-    <a ngbNavLink>Three</a>
-    <ng-template ngbNavContent>
-      <p>test3</p>
-    </ng-template>
-  </li>
-</ul>
-
-<div [ngbNavOutlet]="nav" class="mt-2"></div>
-
- -->
-
 <header>
-  <nav class="navbar navbar-dark bg-primary header-component m-0 p-0">
+  <nav
+    class="navbar navbar-dark bg-primary header-component m-0 p-0"
+    *ngIf="!userLoggedIn"
+  >
     <!-- Navbar content -->
     <div
       class="ms-4 my-auto text-white beuth-log"
@@ -77,5 +55,13 @@
         </button>
       </form>
     </div>
+  </nav>
+
+  <nav
+    class="navbar fixed-top navbar-dark bg-primary header-component m-0 p-2 d-flex justify-content-between align-items-center"
+    *ngIf="userLoggedIn"
+  >
+    <h3 class="my-auto mx-4 text-white">Beuth Verlag</h3>
+    <button mat-raised-button color="accent" class="mx-4">logout</button>
   </nav>
 </header>

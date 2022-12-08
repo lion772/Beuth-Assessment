@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 import { UserInfo } from '../models/UserInfo.dto';
 import { FIREBASE_DOMAIN } from '../secrets';
+console.log(FIREBASE_DOMAIN);
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class HttpService {
 
   getUsersFromFirebase() {
     this.http
-      .get(`${FIREBASE_DOMAIN}/users-info.json`)
+      .get(FIREBASE_DOMAIN)
       .pipe(
         map((dataToBeFiltered: any) => {
           let usersDb = [];
@@ -25,10 +26,13 @@ export class HttpService {
           return usersDb;
         })
       )
-      .subscribe((userData) => {
-        console.log(userData);
-        this.usersList = userData;
-        this.usersInfoSource.next([...this.usersList]);
+      .subscribe({
+        next: (userData) => {
+          console.log(userData);
+          this.usersList = userData;
+          this.usersInfoSource.next([...this.usersList]);
+        },
+        error: (err) => console.log(err.message),
       });
   }
 }
