@@ -29,4 +29,8 @@ export class NavComponent implements OnInit {
     const credentials = { ...form.value, returnSecureToken: true };
     this.credentialsService.signup(credentials);
   }
+
+  onLogoutHandler() {
+    this.userLoggedIn = this.credentialsService.logout();
+  }
 }
