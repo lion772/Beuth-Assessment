@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { UserService } from '../../_services/user.service';
 import { UserInfo } from '../../models/UserInfo.dto';
 import { HttpService } from 'src/app/_services/http.service';
+import { CrendetialsService } from 'src/app/_services/crendetials.service';
 
 @Component({
   selector: 'app-home',
@@ -11,14 +12,21 @@ import { HttpService } from 'src/app/_services/http.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  userLoggedIn = false;
   title = '';
   subscription!: Subscription;
   users: UserInfo[] | null = [];
 
-  constructor(private httpService: HttpService, private router: Router) {}
+  constructor(
+    private httpService: HttpService,
+    private credentialsService: CrendetialsService,
+    private router: Router
+  ) {}
 
   public ngOnInit(): void {
     this.title = 'my new humble website';
+    this.userLoggedIn = this.credentialsService.checkUserLoggedIn();
+    console.log(this.userLoggedIn);
 
     //First way: Getting dummy data from user.service.ts:
     /* this.userService.getUsers();
