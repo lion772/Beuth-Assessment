@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CrendetialsService } from 'src/app/_services/crendetials.service';
+import { CrendentialsService } from 'src/app/_services/crendentials.service';
 import { UserInfo } from '../../models/UserInfo.dto';
 import { UserService } from '../../_services/user.service';
 
@@ -15,7 +15,7 @@ export class UserDetailComponent implements OnInit {
   userFound?: UserInfo | null;
   isUserLoggedin = false;
   constructor(
-    private credentialsService: CrendetialsService,
+    private credentialsService: CrendentialsService,
     private route: ActivatedRoute,
     private router: Router
   ) {}

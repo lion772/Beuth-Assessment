@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/User.dto';
-import { CrendetialsService } from 'src/app/_services/crendetials.service';
+import { CrendentialsService } from 'src/app/_services/crendentials.service';
 
 @Component({
   selector: 'app-nav',
@@ -13,8 +13,11 @@ export class NavComponent implements OnInit {
   active = 1;
   userLoggedIn = false;
   signIn = false;
+  error!: string;
+  isSubmitted = false;
+
   constructor(
-    private credentialsService: CrendetialsService,
+    private credentialsService: CrendentialsService,
     private router: Router
   ) {}
 
@@ -25,11 +28,11 @@ export class NavComponent implements OnInit {
           this.userLoggedIn = true;
         }
       },
-      error: (err) => console.log(err),
     });
   }
 
-  onSubmitHandler(form: NgForm) {
+  async onSubmitHandler(form: NgForm) {
+    this.isSubmitted = true;
     if (!this.signIn) {
       console.log('signup');
       const credentials = { ...form.value, returnSecureToken: true };
@@ -37,7 +40,8 @@ export class NavComponent implements OnInit {
     } else {
       console.log('signin');
       const credentials = { ...form.value, returnSecureToken: true };
-      this.credentialsService.signin(credentials);
+      const res = await this.credentialsService.signin(credentials);
+      console.log('RESPONSE: ', res);
     }
     this.router.navigate(['/']);
   }

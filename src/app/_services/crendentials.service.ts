@@ -7,7 +7,7 @@ import { User } from '../models/User.dto';
 @Injectable({
   providedIn: 'root',
 })
-export class CrendetialsService {
+export class CrendentialsService {
   private userCredentials!: User;
   isLoggedin = false;
   private userCredentialsSource = new BehaviorSubject<User | null>(null);
@@ -23,7 +23,7 @@ export class CrendetialsService {
     returnSecureToken: boolean;
   }) {
     console.log(credentials);
-    this.http.post(ENDPOINT_SIGNUP, credentials).subscribe({
+    return this.http.post(ENDPOINT_SIGNUP, credentials).subscribe({
       next: (res: any) => {
         const { idToken, email } = res;
         this.userCredentials = { idToken, email };

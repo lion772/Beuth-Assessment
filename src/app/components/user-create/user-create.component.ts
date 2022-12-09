@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CrendetialsService } from 'src/app/_services/crendetials.service';
+import { CrendentialsService } from 'src/app/_services/crendentials.service';
 import { HttpService } from 'src/app/_services/http.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class UserCreateComponent implements OnInit {
 
   constructor(
     private httpService: HttpService,
-    private credentialsService: CrendetialsService,
+    private credentialsService: CrendentialsService,
     private router: Router
   ) {}
 

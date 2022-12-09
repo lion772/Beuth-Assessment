@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { UserService } from '../../_services/user.service';
 import { UserInfo } from '../../models/UserInfo.dto';
 import { HttpService } from 'src/app/_services/http.service';
-import { CrendetialsService } from 'src/app/_services/crendetials.service';
+import { CrendentialsService } from 'src/app/_services/crendentials.service';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private httpService: HttpService,
-    private credentialsService: CrendetialsService,
+    private credentialsService: CrendentialsService,
     private router: Router
   ) {}
 

@@ -7,14 +7,14 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CrendetialsService } from '../_services/crendetials.service';
+import { CrendentialsService } from '../_services/crendentials.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
   constructor(
-    private credentialsService: CrendetialsService,
+    private credentialsService: CrendentialsService,
     public router: Router
   ) {}
 
