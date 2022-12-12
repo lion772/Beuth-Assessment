@@ -62,4 +62,8 @@ export class CrendentialsService {
     localStorage.clear();
     this.checkUserLoggedIn();
   }
+
+  getUserToken() {
+    return localStorage.getItem('token');
+  }
 }

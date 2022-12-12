@@ -1,6 +1,8 @@
+<mat-spinner *ngIf="isLoading" class="center"></mat-spinner>
+
 <div class="detail-container" *ngIf="isUserLoggedin">
   <div class="picture-section">
-    <img [src]="defaultPicture" alt="default-picture" />
+    <img [src]="userFound?.picturePath" alt="default-picture" />
     <h1 class="mt-3">{{ userFound?.firstName }}</h1>
     <h1>{{ userFound?.lastName }}</h1>
   </div>

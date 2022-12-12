@@ -19,11 +19,9 @@ export class UserCreateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.isUserLoggedIn);
     this.credentialsService.isUserLoggedIn$.subscribe({
       next: (isLoggedin) => {
         if (isLoggedin) this.router.navigate(['/login']);
-        console.log(isLoggedin);
         this.isUserLoggedIn = isLoggedin;
       },
       error: (err) => console.log(err.message),

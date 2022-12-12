@@ -3,5 +3,6 @@ export interface UserInfo {
   lastName: string;
   username: string;
   userLevel: string;
+  picturePath: string;
   phone?: string;
 }
