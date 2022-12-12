@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.userLoggedIn = isLogged;
       },
     });
-    console.log(this.userLoggedIn);
 
     //Second way: Getting users from Firebase database:
     if (this.users?.length === 0) {
@@ -44,7 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   onClickHandler = (user: UserInfo) => {
     console.log(user);
-    this.router.navigate([`/user-detail/${user.username}`, user]);
+    this.router.navigate([`/user-detail/${user.username}`]);
   };
 
   ngOnDestroy(): void {

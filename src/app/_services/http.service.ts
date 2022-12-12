@@ -45,4 +45,8 @@ export class HttpService {
       error: (err) => console.log(err.message),
     });
   }
+
+  getUsers() {
+    return this.usersList;
+  }
 }

@@ -41,3 +41,9 @@
 .user-details h1 {
   font-size: 160%;
 }
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
