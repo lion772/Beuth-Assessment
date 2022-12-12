@@ -28,6 +28,6 @@ export class AuthGuard implements CanActivate {
 
   navigateHomePage() {
     console.log('You shall not pass!');
-    this.router.navigate(['/']);
+    this.router.navigate(['/auth']);
   }
 }

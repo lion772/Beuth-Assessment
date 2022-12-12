@@ -1,0 +1,13 @@
+<app-home></app-home>
+
+<div *ngIf="userLoggedIn">
+  <h6 class="my-4">Those are the people who belong to the same team:</h6>
+
+  <div class="list-names card" *ngFor="let user of users">
+    <h2>
+      {{ user.firstName }} {{ user.lastName }}, whose current level is
+      {{ user.userLevel }}
+    </h2>
+    <button (click)="onClickHandler(user)">more</button>
+  </div>
+</div>

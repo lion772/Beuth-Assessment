@@ -22,7 +22,7 @@ export class UserCreateComponent implements OnInit {
     console.log(this.isUserLoggedIn);
     this.credentialsService.isUserLoggedIn$.subscribe({
       next: (isLoggedin) => {
-        if (isLoggedin) this.router.navigate(['/']);
+        if (isLoggedin) this.router.navigate(['/login']);
         console.log(isLoggedin);
         this.isUserLoggedIn = isLoggedin;
       },

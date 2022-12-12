@@ -11,52 +11,18 @@ import { CrendentialsService } from 'src/app/_services/crendentials.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit, OnDestroy {
-  userLoggedIn = false;
+export class HomeComponent implements OnInit {
   title = '';
-  subscription!: Subscription;
-  users: UserInfo[] | null = [];
 
-  constructor(
-    private httpService: HttpService,
-    private credentialsService: CrendentialsService,
-    private router: Router
-  ) {}
+  constructor() {}
 
   public ngOnInit(): void {
     this.title = 'Welcome new fellows';
-    this.credentialsService.checkUserLoggedIn();
-    this.credentialsService.isUserLoggedIn$.subscribe({
-      next: (isLogged) => {
-        this.userLoggedIn = isLogged;
-      },
-    });
-    console.log(this.userLoggedIn);
 
     //First way: Getting dummy data from user.service.ts:
     /* this.userService.getUsers();
     this.subscription = this.userService.users$.subscribe((data) => {
       data ? (this.users = data) : (this.users = null);
     }); */
-
-    //Second way: Getting users from Firebase database:
-    if (this.users?.length === 0) {
-      this.httpService.getUsersFromFirebase();
-      this.subscription = this.httpService.usersInfo$.subscribe((usersData) => {
-        if (usersData && usersData?.length > 0) {
-          console.log(usersData);
-          this.users = usersData;
-        }
-      });
-    }
-  }
-
-  onClickHandler = (user: UserInfo) => {
-    console.log(user);
-    this.router.navigate([`/user-detail/${user.username}`, user]);
-  };
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 }

@@ -27,7 +27,7 @@ export class UserDetailComponent implements OnInit {
     });
 
     this.credentialsService.isUserLoggedIn$.subscribe((isLoggedin) => {
-      if (!isLoggedin) this.router.navigate(['/']);
+      if (!isLoggedin) this.router.navigate(['/auth']);
       this.isUserLoggedin = isLoggedin;
     });
   }

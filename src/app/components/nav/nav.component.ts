@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/User.dto';
 import { CrendentialsService } from 'src/app/_services/crendentials.service';
 
 @Component({
@@ -34,16 +33,13 @@ export class NavComponent implements OnInit {
   async onSubmitHandler(form: NgForm) {
     this.isSubmitted = true;
     if (!this.signIn) {
-      console.log('signup');
       const credentials = { ...form.value, returnSecureToken: true };
       this.credentialsService.signup(credentials);
     } else {
-      console.log('signin');
       const credentials = { ...form.value, returnSecureToken: true };
-      const res = await this.credentialsService.signin(credentials);
-      console.log('RESPONSE: ', res);
+      this.credentialsService.signin(credentials);
     }
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 
   onLogoutHandler() {
@@ -51,5 +47,11 @@ export class NavComponent implements OnInit {
     this.credentialsService.isUserLoggedIn$.subscribe(
       (isLogged) => (this.userLoggedIn = isLogged)
     );
+  }
+
+  onBeuthAppHandler() {
+    this.userLoggedIn
+      ? this.router.navigate(['/login'])
+      : this.router.navigate(['/auth']);
   }
 }

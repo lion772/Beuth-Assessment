@@ -31,7 +31,7 @@ export class CrendentialsService {
         this.checkUserLoggedIn();
         this.userCredentialsSource.next(this.userCredentials);
       },
-      error: (err) => console.log(err.message),
+      error: (err) => err.message,
     });
   }
 

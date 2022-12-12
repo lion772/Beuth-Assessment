@@ -2,8 +2,8 @@
   <nav class="navbar navbar-dark bg-primary p-0">
     <div
       class="ms-4 my-auto text-white"
-      [routerLink]="['/']"
       [style]="{ cursor: 'pointer' }"
+      (click)="onBeuthAppHandler()"
     >
       <h1>Beuth App</h1>
     </div>

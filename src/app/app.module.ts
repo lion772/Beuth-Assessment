@@ -16,6 +16,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { UserCreateComponent } from './components/user-create/user-create.component';
+import { LoginComponent } from './components/login/login.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { UserCreateComponent } from './components/user-create/user-create.compon
     LogoComponent,
     NavComponent,
     UserCreateComponent,
+    LoginComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
