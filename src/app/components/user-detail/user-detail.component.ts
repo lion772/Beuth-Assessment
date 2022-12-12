@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { User } from 'src/app/models/User.dto';
 import { CrendentialsService } from 'src/app/_services/crendentials.service';
 import { HttpService } from 'src/app/_services/http.service';
 import { UserInfo } from '../../models/UserInfo.dto';
@@ -42,9 +41,12 @@ export class UserDetailComponent implements OnInit, OnDestroy {
       if (users && users?.length > 0) {
         this.users = users;
         this.route.params.subscribe((params) => {
+          console.log(params);
+
           this.userFound = this.users.find(
             (user) => user.username === params['username']
           );
+          console.log(this.userFound);
           this.isLoading = false;
         });
       }

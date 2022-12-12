@@ -63,7 +63,7 @@ export class CrendentialsService {
     this.checkUserLoggedIn();
   }
 
-  getUserToken() {
+  public get hasToken() {
     return localStorage.getItem('token');
   }
 }

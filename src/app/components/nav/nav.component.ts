@@ -30,7 +30,7 @@ export class NavComponent implements OnInit {
     });
   }
 
-  async onSubmitHandler(form: NgForm) {
+  onSubmitHandler(form: NgForm) {
     this.isSubmitted = true;
     if (!this.signIn) {
       const credentials = { ...form.value, returnSecureToken: true };
@@ -44,9 +44,10 @@ export class NavComponent implements OnInit {
 
   onLogoutHandler() {
     this.credentialsService.logout();
-    this.credentialsService.isUserLoggedIn$.subscribe(
-      (isLogged) => (this.userLoggedIn = isLogged)
-    );
+    this.credentialsService.isUserLoggedIn$.subscribe((isLogged) => {
+      this.userLoggedIn = isLogged;
+      this.router.navigate(['/auth']);
+    });
   }
 
   onBeuthAppHandler() {
