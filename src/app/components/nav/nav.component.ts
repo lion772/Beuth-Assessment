@@ -11,7 +11,7 @@ import { CrendentialsService } from 'src/app/_services/crendentials.service';
 export class NavComponent implements OnInit {
   active = 1;
   userLoggedIn = false;
-  signIn = false;
+  signIn = true;
   error!: string;
   isSubmitted = false;
 

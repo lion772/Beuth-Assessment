@@ -11,13 +11,7 @@ const routes: Routes = [
   { path: 'auth', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'user-create', component: UserCreateComponent },
-
-  {
-    path: '',
-    runGuardsAndResolvers: 'always',
-    canActivate: [AuthGuard],
-    children: [{ path: 'user-detail/:user', component: UserDetailComponent }],
-  },
+  { path: 'user-detail/:user', component: UserDetailComponent },
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent, pathMatch: 'full' },
 ];
