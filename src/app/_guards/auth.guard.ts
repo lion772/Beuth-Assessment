@@ -6,7 +6,7 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { CrendentialsService } from '../_services/crendentials.service';
 
 @Injectable({
@@ -19,11 +19,18 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.credentialsService.isLoggedin) {
+    /* if (this.credentialsService.isLoggedin) {
       return true;
-    }
-    this.navigateHomePage();
-    return false;
+    } */
+    return this.credentialsService.isUserLoggedIn$.pipe(
+      map((isLoggedin) => {
+        if (!isLoggedin) {
+          this.navigateHomePage();
+          return false;
+        }
+        return true;
+      })
+    );
   }
 
   navigateHomePage() {

@@ -33,8 +33,10 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.credentialsService.checkUserLoggedIn();
     this.subscriptionLogin = this.credentialsService.isUserLoggedIn$.subscribe({
       next: (isLogged) => {
+        if (!isLogged) this.router.navigate(['/auth']);
         this.isUserLoggedin = isLogged;
       },
+      error: (err) => console.log(err),
     });
     this.httpService.getUsersFromFirebase();
     this.subscriptionUsers = this.httpService.usersInfo$.subscribe((users) => {
@@ -51,11 +53,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
         });
       }
     });
-
-    this.credentialsService.isUserLoggedIn$.subscribe((isLoggedin) => {
-      if (!isLoggedin) this.router.navigate(['/auth']);
-      this.isUserLoggedin = isLoggedin;
-    });
+ 
   }
 
   ngOnDestroy(): void {
