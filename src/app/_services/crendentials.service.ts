@@ -23,8 +23,8 @@ export class CrendentialsService {
     returnSecureToken: boolean;
   }) {
     console.log(credentials);
-    return this.http.post(ENDPOINT_SIGNUP, credentials).subscribe({
-      next: (res: any) => {
+    return this.http.post<User>(ENDPOINT_SIGNUP, credentials).subscribe({
+      next: (res: User) => {
         const { idToken, email } = res;
         this.userCredentials = { idToken, email };
         localStorage.setItem('token', idToken);
@@ -40,8 +40,8 @@ export class CrendentialsService {
     password: string;
     returnSecureToken: boolean;
   }) {
-    this.http.post(ENDPOINT_SIGNIN, credentials).subscribe({
-      next: (res: any) => {
+    this.http.post<User>(ENDPOINT_SIGNIN, credentials).subscribe({
+      next: (res: User) => {
         console.log(res);
         const { idToken, email } = res;
         this.userCredentials = { idToken, email };
@@ -60,6 +60,7 @@ export class CrendentialsService {
 
   logout() {
     localStorage.clear();
+    this.userCredentialsSource.next(null);
     this.checkUserLoggedIn();
   }
 
