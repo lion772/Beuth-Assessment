@@ -24,12 +24,11 @@ export class CrendentialsService {
   }) {
     console.log(credentials);
     return this.http.post<User>(ENDPOINT_SIGNUP, credentials).subscribe({
-      next: (res: User) => {
-        const { idToken, email } = res;
-        this.userCredentials = { idToken, email };
-        localStorage.setItem('token', idToken);
+      next: (userDetail: User) => {
+        this.userCredentials = userDetail;
+        localStorage.setItem('token', userDetail.idToken);
         this.checkUserLoggedIn();
-        this.userCredentialsSource.next(this.userCredentials);
+        this.setCurrentUser(this.userCredentials);
       },
       error: (err) => err.message,
     });
@@ -47,7 +46,7 @@ export class CrendentialsService {
         this.userCredentials = { idToken, email };
         localStorage.setItem('token', idToken);
         this.checkUserLoggedIn();
-        this.userCredentialsSource.next(this.userCredentials);
+        this.setCurrentUser(this.userCredentials);
       },
     });
   }
@@ -58,9 +57,13 @@ export class CrendentialsService {
     this.isUserLoggedIn.next(isLoggedin);
   }
 
+  setCurrentUser(user: User | null = null) {
+    this.userCredentialsSource.next(user);
+  }
+
   logout() {
     localStorage.clear();
-    this.userCredentialsSource.next(null);
+    this.setCurrentUser();
     this.checkUserLoggedIn();
   }
 
