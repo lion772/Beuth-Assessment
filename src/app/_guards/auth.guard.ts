@@ -21,10 +21,23 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | Observable<boolean> | Promise<boolean> {
-    if (this.credentialsService.userCredentials$) {
+    // 1° way: Observable
+    return this.credentialsService.userCredentials$.pipe(
+      map((user) => {
+        console.log(user);
+        if (user) {
+          return true;
+        }
+        this.router.navigate(['/auth']);
+        return false;
+      })
+    );
+
+    //2° way: localStarage
+    /*if (localStorage.getItem('user')) {
       return true;
     }
     this.router.navigate(['/auth']);
-    return false;
+    return false;*/
   }
 }
