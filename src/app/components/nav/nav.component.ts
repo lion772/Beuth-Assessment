@@ -16,19 +16,11 @@ export class NavComponent implements OnInit {
   isSubmitted = false;
 
   constructor(
-    private credentialsService: CrendentialsService,
+    public credentialsService: CrendentialsService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    this.credentialsService.userCredentials$.subscribe({
-      next: (_) => {
-        if (localStorage.getItem('token')) {
-          this.userLoggedIn = true;
-        }
-      },
-    });
-  }
+  ngOnInit(): void {}
 
   onSubmitHandler(form: NgForm) {
     this.isSubmitted = true;
@@ -44,10 +36,7 @@ export class NavComponent implements OnInit {
 
   onLogoutHandler() {
     this.credentialsService.logout();
-    this.credentialsService.isUserLoggedIn$.subscribe((isLogged) => {
-      this.userLoggedIn = isLogged;
-      this.router.navigate(['/auth']);
-    });
+    this.router.navigate(['/auth']);
   }
 
   onBeuthAppHandler() {
