@@ -1,4 +1,7 @@
-<div class="bg-default card create-component" *ngIf="!isUserLoggedIn">
+<div
+  class="bg-default card create-component"
+  *ngIf="!(credentialsService.userCredentials$ | async)"
+>
   <p>Create user</p>
 
   <form #createForm="ngForm" (submit)="onCreateHandler(createForm)">

@@ -8,20 +8,28 @@ import { CrendentialsService } from './_services/crendentials.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  title = 'beuth-app';
+
   constructor(
     private credentialsService: CrendentialsService,
     private router: Router
   ) {}
+
   ngOnInit(): void {
-    this.credentialsService.checkUserLoggedIn();
-    this.credentialsService.isUserLoggedIn$.subscribe({
-      next: (isLoggedin) => {
-        isLoggedin
+    this.setCurrentUser();
+    this.credentialsService.userCredentials$.subscribe({
+      next: (user) => {
+        user
           ? this.router.navigate(['/login'])
           : this.router.navigate(['/auth']);
       },
       error: (err) => console.log(err),
     });
   }
-  title = 'beuth-app';
+
+  setCurrentUser() {
+    const userStr = localStorage.getItem('user');
+    if (!userStr) return;
+    this.credentialsService.setCurrentUser(JSON.parse(userStr));
+  }
 }

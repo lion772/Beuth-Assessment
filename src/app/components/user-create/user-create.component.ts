@@ -14,19 +14,11 @@ export class UserCreateComponent implements OnInit {
 
   constructor(
     private httpService: HttpService,
-    private credentialsService: CrendentialsService,
-    private router: Router
+    public credentialsService: CrendentialsService,
+    public router: Router
   ) {}
 
-  ngOnInit(): void {
-    this.credentialsService.isUserLoggedIn$.subscribe({
-      next: (isLoggedin) => {
-        if (isLoggedin) this.router.navigate(['/login']);
-        this.isUserLoggedIn = isLoggedin;
-      },
-      error: (err) => console.log(err.message),
-    });
-  }
+  ngOnInit(): void {}
 
   onCreateHandler(createForm: NgForm) {
     console.log(createForm.value);

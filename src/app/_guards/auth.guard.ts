@@ -17,21 +17,14 @@ export class AuthGuard implements CanActivate {
     private credentialsService: CrendentialsService,
     public router: Router
   ) {}
-
-  canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    return this.credentialsService.isUserLoggedIn$.pipe(
-      map((isLoggedin) => {
-        if (!isLoggedin) {
-          this.navigateHomePage();
-          return false;
-        }
-        return true;
-      })
-    );
-  }
-
-  navigateHomePage() {
-    console.log('You shall not pass!');
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean | Observable<boolean> | Promise<boolean> {
+    if (this.credentialsService.userCredentials$) {
+      return true;
+    }
     this.router.navigate(['/auth']);
+    return false;
   }
 }

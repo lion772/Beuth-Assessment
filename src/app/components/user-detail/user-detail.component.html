@@ -2,7 +2,7 @@
 
 <div
   class="detail-container"
-  *ngIf="(credentialsService.isUserLoggedIn$ | async) && !isLoading"
+  *ngIf="(credentialsService.userCredentials$ | async) && !isLoading"
 >
   <div class="picture-section">
     <img [src]="userFound?.picturePath" alt="default-picture" />

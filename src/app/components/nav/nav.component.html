@@ -3,7 +3,9 @@
     <div
       class="ms-4 my-auto text-white"
       [style]="{ cursor: 'pointer' }"
-      (click)="onBeuthAppHandler()"
+      (click)="
+        credentialsService.userCredentials$ ? router.navigate(['/login']) : router.navigate(['/auth'])
+      "
     >
       <h1>Beuth App</h1>
     </div>
@@ -12,7 +14,7 @@
       <form
         #postForm="ngForm"
         (submit)="onSubmitHandler(postForm)"
-        *ngIf="!(credentialsService.isUserLoggedIn$ | async)"
+        *ngIf="!(credentialsService.userCredentials$ | async)"
       >
         <mat-form-field>
           <input
@@ -69,7 +71,7 @@
       </form>
 
       <button
-        *ngIf="credentialsService.isUserLoggedIn$ | async"
+        *ngIf="credentialsService.userCredentials$ | async"
         mat-raised-button
         color="accent"
         class="mx-4"

@@ -12,8 +12,6 @@ export class CrendentialsService {
   isLoggedin = false;
   private userCredentialsSource = new BehaviorSubject<User | null>(null);
   userCredentials$ = this.userCredentialsSource.asObservable();
-  private isUserLoggedInSource = new BehaviorSubject<boolean>(false);
-  isUserLoggedIn$ = this.isUserLoggedInSource.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -24,10 +22,9 @@ export class CrendentialsService {
   }) {
     console.log(credentials);
     return this.http.post<User>(ENDPOINT_SIGNUP, credentials).subscribe({
-      next: (userDetail: User) => {
-        this.userCredentials = userDetail;
-        localStorage.setItem('token', userDetail.idToken);
-        this.checkUserLoggedIn();
+      next: (res: User) => {
+        this.setLocalStorage(res);
+        this.userCredentials = res;
         this.setCurrentUser(this.userCredentials);
       },
       error: (err) => err.message,
@@ -41,21 +38,18 @@ export class CrendentialsService {
   }) {
     this.http.post<User>(ENDPOINT_SIGNIN, credentials).subscribe({
       next: (res: User) => {
-        console.log(res);
-        const { idToken, email } = res;
-        this.userCredentials = { idToken, email };
-        localStorage.setItem('token', idToken);
-        this.checkUserLoggedIn();
+        this.setLocalStorage(res);
+        this.userCredentials = res;
         this.setCurrentUser(this.userCredentials);
       },
     });
   }
 
-  checkUserLoggedIn() {
-    const isLoggedin = localStorage.getItem('token') ? true : false;
-    console.log(isLoggedin);
-    this.isLoggedin = isLoggedin;
-    this.isUserLoggedInSource.next(isLoggedin);
+  setLocalStorage(response: User) {
+    localStorage.setItem(
+      'user',
+      JSON.stringify({ email: response.email, idToken: response.idToken })
+    );
   }
 
   setCurrentUser(user: User | null = null) {
@@ -65,10 +59,5 @@ export class CrendentialsService {
   logout() {
     localStorage.clear();
     this.setCurrentUser();
-    this.checkUserLoggedIn();
-  }
-
-  public get hasToken() {
-    return localStorage.getItem('token');
   }
 }

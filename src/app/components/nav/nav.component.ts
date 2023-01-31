@@ -9,13 +9,14 @@ import { CrendentialsService } from 'src/app/_services/crendentials.service';
   styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
+  isLoggedin = false;
   signIn = true;
   error!: string;
   isSubmitted = false;
 
   constructor(
     public credentialsService: CrendentialsService,
-    private router: Router
+    public router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -35,16 +36,5 @@ export class NavComponent implements OnInit {
   onLogoutHandler() {
     this.credentialsService.logout();
     this.router.navigate(['/auth']);
-  }
-
-  onBeuthAppHandler() {
-    this.credentialsService.isUserLoggedIn$.subscribe({
-      next: (isLoggedin) => {
-        isLoggedin
-          ? this.router.navigate(['/login'])
-          : this.router.navigate(['/auth']);
-      },
-      error: (err) => (this.error = err),
-    });
   }
 }
