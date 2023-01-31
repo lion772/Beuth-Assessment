@@ -12,7 +12,7 @@
       <form
         #postForm="ngForm"
         (submit)="onSubmitHandler(postForm)"
-        *ngIf="!(credentialsService.userCredentials$ | async)"
+        *ngIf="!(credentialsService.isUserLoggedIn$ | async)"
       >
         <mat-form-field>
           <input
@@ -69,7 +69,7 @@
       </form>
 
       <button
-        *ngIf="credentialsService.userCredentials$ | async"
+        *ngIf="credentialsService.isUserLoggedIn$ | async"
         mat-raised-button
         color="accent"
         class="mx-4"

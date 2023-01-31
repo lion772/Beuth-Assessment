@@ -12,8 +12,8 @@ export class CrendentialsService {
   isLoggedin = false;
   private userCredentialsSource = new BehaviorSubject<User | null>(null);
   userCredentials$ = this.userCredentialsSource.asObservable();
-  private isUserLoggedIn = new BehaviorSubject<boolean>(false);
-  isUserLoggedIn$ = this.isUserLoggedIn.asObservable();
+  private isUserLoggedInSource = new BehaviorSubject<boolean>(false);
+  isUserLoggedIn$ = this.isUserLoggedInSource.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -53,8 +53,9 @@ export class CrendentialsService {
 
   checkUserLoggedIn() {
     const isLoggedin = localStorage.getItem('token') ? true : false;
+    console.log(isLoggedin);
     this.isLoggedin = isLoggedin;
-    this.isUserLoggedIn.next(isLoggedin);
+    this.isUserLoggedInSource.next(isLoggedin);
   }
 
   setCurrentUser(user: User | null = null) {

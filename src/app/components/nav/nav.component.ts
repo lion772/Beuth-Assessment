@@ -9,8 +9,6 @@ import { CrendentialsService } from 'src/app/_services/crendentials.service';
   styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
-  active = 1;
-  userLoggedIn = false;
   signIn = true;
   error!: string;
   isSubmitted = false;
@@ -40,8 +38,13 @@ export class NavComponent implements OnInit {
   }
 
   onBeuthAppHandler() {
-    this.userLoggedIn
-      ? this.router.navigate(['/login'])
-      : this.router.navigate(['/auth']);
+    this.credentialsService.isUserLoggedIn$.subscribe({
+      next: (isLoggedin) => {
+        isLoggedin
+          ? this.router.navigate(['/login'])
+          : this.router.navigate(['/auth']);
+      },
+      error: (err) => (this.error = err),
+    });
   }
 }

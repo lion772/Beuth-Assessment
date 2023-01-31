@@ -11,24 +11,16 @@ import { HttpService } from 'src/app/_services/http.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  userLoggedIn = false;
   subscription!: Subscription;
   users: UserInfo[] | null = [];
 
   constructor(
-    private credentialsService: CrendentialsService,
+    public credentialsService: CrendentialsService,
     private httpService: HttpService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.credentialsService.checkUserLoggedIn();
-    this.subscription = this.credentialsService.isUserLoggedIn$.subscribe({
-      next: (isLogged) => {
-        this.userLoggedIn = isLogged;
-      },
-    });
-
     //Second way: Getting users from Firebase database:
     if (this.users?.length === 0) {
       this.httpService.getUsersFromFirebase();
@@ -42,7 +34,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onClickHandler = (user: UserInfo) => {
-    console.log(user);
     this.router.navigate([`/user-detail/${user.username}`]);
   };
 

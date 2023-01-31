@@ -21,7 +21,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   subscriptionUsers!: Subscription;
 
   constructor(
-    private credentialsService: CrendentialsService,
+    public credentialsService: CrendentialsService,
     private httpService: HttpService,
     private route: ActivatedRoute,
     private router: Router
@@ -30,14 +30,6 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isLoading = true;
 
-    this.credentialsService.checkUserLoggedIn();
-    this.subscriptionLogin = this.credentialsService.isUserLoggedIn$.subscribe({
-      next: (isLogged) => {
-        if (!isLogged) this.router.navigate(['/auth']);
-        this.isUserLoggedin = isLogged;
-      },
-      error: (err) => console.log(err),
-    });
     this.httpService.getUsersFromFirebase();
     this.subscriptionUsers = this.httpService.usersInfo$.subscribe((users) => {
       if (users && users?.length > 0) {
@@ -53,11 +45,9 @@ export class UserDetailComponent implements OnInit, OnDestroy {
         });
       }
     });
- 
   }
 
   ngOnDestroy(): void {
-    this.subscriptionLogin.unsubscribe();
     this.subscriptionUsers.unsubscribe();
   }
 }

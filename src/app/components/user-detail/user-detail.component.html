@@ -1,6 +1,9 @@
 <mat-spinner *ngIf="isLoading" class="center"></mat-spinner>
 
-<div class="detail-container" *ngIf="isUserLoggedin && !isLoading">
+<div
+  class="detail-container"
+  *ngIf="(credentialsService.isUserLoggedIn$ | async) && !isLoading"
+>
   <div class="picture-section">
     <img [src]="userFound?.picturePath" alt="default-picture" />
     <h1 class="mt-3">{{ userFound?.firstName }}</h1>

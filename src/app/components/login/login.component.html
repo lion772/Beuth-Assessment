@@ -1,6 +1,6 @@
 <app-home></app-home>
 
-<div *ngIf="userLoggedIn">
+<div *ngIf="credentialsService.isUserLoggedIn$ | async">
   <h6 class="my-4">Those are the people who belong to the same team:</h6>
 
   <div class="list-names card" *ngFor="let user of users">
